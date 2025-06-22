@@ -40,19 +40,13 @@ app.post('/webhook', async (req, res) => {
       if (msg.from === MY_NUMBER) {
         console.log('Mensagem vinda do próprio número. Ignorando...');
         return res.sendStatus(200);
-      }
-
-      if (text.toLowerCase().includes('oi') || text.toLowerCase().includes('olá') || text.toLowerCase().includes('bom dia') || text.toLowerCase().includes('boa tarde') || text.toLowerCase().includes('boa noite')) {
-        await api.post(`/messages/text`, {
-            to: from,
-            body: `Oi! Tudo bem? Como posso te ajudar hoje?`
-        });
-    } else {
+      } else {
         await api.post(`/messages/text`, {
             to: from,
             body: `Seja bem vindo ao canal de comunicação automatizada da Secretaria Municipal de Saúde de Neópolis - SE. 🏥 👨🏻‍⚕️\n\nPor enquanto este número está sendo utilizado somente para disparo de notificações sobre chegada de exames, mas logo estaremos disponibilizando funções para auxiliar nossos pacientes! 😉`
         });
-    }
+      }
+    
 
     }
     res.sendStatus(200);
